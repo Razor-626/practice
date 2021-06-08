@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="ajax_requests.js"></script>
+    <title>Social Network</title>
+</head>
+<body>
+    <header>
+        <div class="title">
+            <h1>Social Network</h1>
+        </div>
+        <nav>
+            <ul>
+                <li id="registration" data-toggle="modal">Регистрация</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div>
+            <table>
+                <caption>Users</caption>
+                <tr>
+                    <td>id</td>
+                    <td>name</td>
+                    <td>surname</td>
+                    <td>age</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <p class="title">All rights reserved</p>
+    </footer>
+
+    <div id="modal-form-block">
+        <h3>Регистрация</h3>
+        <form id="modal-form" action="" method="POST">
+            <label>ID</label>
+            <input type="text" name="id">
+            <label>Name</label>
+            <input type="text" name="name">
+            <label>Surname</label>
+            <input type="text" name="surname">
+            <label>Age</label>
+            <input type="text" name="age">
+            <input type="submit" value="Сохранить">
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
