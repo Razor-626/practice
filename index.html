@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="ajax_requests.js"></script>
     <title>Social Network</title>
 </head>
 <body>
@@ -23,7 +22,7 @@
         <div>
             <table>
                 <caption>Users</caption>
-                <tr>
+                <tr class="last_stream">
                     <td>id</td>
                     <td>name</td>
                     <td>surname</td>
@@ -47,7 +46,7 @@
             <input type="text" name="surname">
             <label>Age</label>
             <input type="text" name="age">
-            <input type="submit" value="Сохранить">
+            <button type="submit">Сохранить</button>
         </form>
     </div>
     <script src="script.js"></script>

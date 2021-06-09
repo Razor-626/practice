@@ -1,8 +1,10 @@
+//const axios = require('axios').default;
 const request = new XMLHttpRequest();
 
 //Get request
 
 const url = "http://localhost:3002";
+
 
 request.open('GET', url);
 
@@ -15,3 +17,16 @@ request.addEventListener("readystatechange", () =>{
 });
 
 request.send();
+
+
+/*
+axios.get(url, {
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+  */

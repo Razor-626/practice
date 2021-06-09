@@ -18,6 +18,7 @@ body header .title {
   width: inherit;
   display: flex;
   justify-content: center;
+  font-family: Mistral;
 }
 
 body header nav {
@@ -35,8 +36,14 @@ body header nav ul {
   align-items: center;
 }
 
+body header nav ul li {
+  font-size: 18px;
+  font-family: Monotype Corsiva;
+}
+
 body header nav ul li:hover {
   cursor: pointer;
+  color: #fff;
 }
 
 body main {
@@ -44,11 +51,11 @@ body main {
   justify-content: center;
   min-height: 700px;
   margin-top: 20px;
+  font-family: Monotype Corsiva;
 }
 
 body main table {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-  font-size: 14px;
+  font-size: 18px;
   border-collapse: collapse;
   text-align: center;
 }
@@ -71,12 +78,14 @@ body main table th {
 
 body main table td {
   background: #D8E6F3;
+  min-width: 65px;
 }
 
 body main table td:first-child {
   background: #AFCDE7;
   color: white;
   padding: 10px 20px;
+  min-width: 20px;
 }
 
 body footer {
@@ -86,26 +95,58 @@ body footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Monotype Corsiva;
+  font-size: 20px;
 }
 
 body #modal-form-block {
   position: fixed;
   top: 200px;
-  left: 450px;
+  left: 650px;
   z-index: 9999;
   display: none;
   width: 250px;
-  height: 270px;
+  height: 300px;
   background: khaki;
   text-align: center;
+  border-radius: 25px;
+  font-family: Monotype Corsiva;
+}
+
+body #modal-form-block h3 {
+  font-size: 22px;
 }
 
 body #modal-form-block #modal-form {
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   width: 250px;
-  justify-content: center;
+  height: 220px;
+  justify-content: space-around;
   align-items: center;
+  font-size: 18px;
+}
+
+body #modal-form-block #modal-form input {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+}
+
+body #modal-form-block #modal-form button {
+  margin-top: 15px;
+  width: 100px;
+  border: none;
+  border-radius: 5px;
+  font-family: Monotype Corsiva;
+  font-size: 18px;
+}
+
+body #modal-form-block #modal-form button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 body #cover-div {
