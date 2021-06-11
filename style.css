@@ -81,6 +81,18 @@ body main table td {
   min-width: 65px;
 }
 
+body main table td button {
+  width: 22px;
+  height: 22px;
+  background: url(/img/edit.png) no-repeat;
+  background-size: 100%;
+  border: none;
+}
+
+body main table td button:hover {
+  cursor: pointer;
+}
+
 body main table td:first-child {
   background: #AFCDE7;
   color: white;
@@ -99,10 +111,10 @@ body footer {
   font-size: 20px;
 }
 
-body #modal-form-block {
-  position: fixed;
-  top: 200px;
-  left: 650px;
+body #modal-editform-block, body #modal-registrform-block {
+  position: absolute;
+  left: calc(50% - 125px);
+  top: calc(50% - 150px);
   z-index: 9999;
   display: none;
   width: 250px;
@@ -113,11 +125,11 @@ body #modal-form-block {
   font-family: Monotype Corsiva;
 }
 
-body #modal-form-block h3 {
+body #modal-editform-block h3, body #modal-registrform-block h3 {
   font-size: 22px;
 }
 
-body #modal-form-block #modal-form {
+body #modal-editform-block .modal-form, body #modal-registrform-block .modal-form {
   margin-top: 5px;
   display: flex;
   flex-direction: column;
@@ -128,14 +140,14 @@ body #modal-form-block #modal-form {
   font-size: 18px;
 }
 
-body #modal-form-block #modal-form input {
+body #modal-editform-block .modal-form input, body #modal-registrform-block .modal-form input {
   border-radius: 5px;
   border: none;
   outline: none;
   padding-left: 10px;
 }
 
-body #modal-form-block #modal-form button {
+body #modal-editform-block .modal-form button, body #modal-registrform-block .modal-form button {
   margin-top: 15px;
   width: 100px;
   border: none;
@@ -144,7 +156,7 @@ body #modal-form-block #modal-form button {
   font-size: 18px;
 }
 
-body #modal-form-block #modal-form button:hover {
+body #modal-editform-block .modal-form button:hover, body #modal-registrform-block .modal-form button:hover {
   cursor: pointer;
   transform: scale(1.1);
 }

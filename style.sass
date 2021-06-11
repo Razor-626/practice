@@ -1,6 +1,8 @@
 $background_color: khaki
 $font-family:  Mistral 
 $main-font-family: Monotype Corsiva
+//$modal-block-width: 250px
+//$modal-block-height: 300px
 
 *
     margin: 0
@@ -69,16 +71,35 @@ body
                 background: #AFCDE7
                 color: white
                 padding: 10px 20px
+                
 
             td
                 background: #D8E6F3
                 min-width: 65px
+
+
+                //&:last-child
+                ///    display: none                         
+
+                button
+                    
+                    width: 22px
+                    height: 22px
+                    background: url(/img/edit.png) no-repeat 
+                    background-size: 100%
+                    border: none
+
+                    &:hover
+                        cursor: pointer
 
                 &:first-child
                     background: #AFCDE7
                     color: white
                     padding: 10px 20px
                     min-width: 20px
+
+
+                    
 
     footer
         width: inherit
@@ -91,11 +112,11 @@ body
         font-size: 20px
 
 
-    #modal-form-block
+    #modal-editform-block, #modal-registrform-block
 
-        position: fixed
-        top: 200px
-        left: 650px
+        position: absolute
+        left: calc(50% - 125px)
+        top: calc(50% - 150px)
         z-index: 9999
         display: none
         width: 250px
@@ -108,7 +129,7 @@ body
         h3
             font-size: 22px
 
-        #modal-form
+        .modal-form
             margin-top: 5px
             display: flex
             flex-direction: column

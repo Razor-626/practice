@@ -1,7 +1,7 @@
 // Settings
 const request = new XMLHttpRequest();
 const url = "http://localhost:3002";
-
+const modalRegisterForm = document.getElementById('modal-registr-form');
 
 //Get request
 request.open('GET', url);
@@ -18,7 +18,47 @@ request.addEventListener("readystatechange", () =>{
 request.send();
 
 
+
+//Post request
+
+const registrUser = document.getElementById('registrUser');
+
+function sendPostRequest(event){
+
+    event.preventDefault();
+
+
+    let requestBody = new SendData
+    const modalFormInputs = modalRegisterForm.getElementsByTagName('input')
+
+    for(let i = 0; i < modalFormInputs.length; i++){
+        requestBody[modalFormInputs[i].name] = modalFormInputs[i].value
+    };
+
+    console.log(requestBody);
+    
+    request.open('POST', url + '/create', true);
+
+    request.setRequestHeader("Content-type", "application/json");
+    request.onreadystatechange = function() {
+        if(request.readyState == XMLHttpRequest.DONE && (request.status == 200 || request.status == 201)) {
+            console.log('OK');
+        };
+    }
+    
+    request.send(JSON.stringify(requestBody));
+    
+}
+
+registrUser.onclick = function(event){
+    sendPostRequest(event);
+}
+
+
+
+
 //Modal Form
+const registerNav = document.getElementById('registration');
 
 function showCover() {
     
@@ -37,50 +77,46 @@ function hideCover() {
   }
 
 
-function showModalForm(event){
+function showModalRegistrationForm(){
     
     showCover();
-    let modalFormContainer = document.getElementById('modal-form-block')
-    let modalForm = document.getElementById('modal-form');
+    let modalFormContainer = document.getElementById('modal-registrform-block')
     modalFormContainer.style.display = 'block';
 
-    if(event.targe !== modalFormContainer && modalFormContainer.style.display !== 'none'){
-        //modalFormContainer.style.display = 'none';
-        //hideCover();
-        console.log('Yes');
-    }
 
-
-    /*
     function complete(value) {
         hideCover();
         modalFormContainer.style.display = 'none';
         document.onkeydown = null;
-        callback(value);
-      }
-
-    form.onsubmit = function() {
+    }
+    
+    /*
+    modalRegisterForm.onsubmit = function() {
         complete(value);
         return false;
     };
+    */
 
-    form.cancel.onclick = function() {
+    modalRegisterForm.cancel.onclick = function() {
         complete(null);
     };
+    
 
     document.onkeydown = function(e) {
         if (e.key == 'Escape') {
             complete(null);
         }
     };
-    */
+    
+    // Hide cover
+    const overModalClick = document.getElementById('cover-div');
+
+    overModalClick.addEventListener('click', complete);
+//
+
 }
 
-const register = document.getElementById('registration');
-
-register.onclick =  function(event){
-    showModalForm(event);
-};
+registerNav.addEventListener('click', showModalRegistrationForm);
 
 
 
@@ -107,6 +143,7 @@ function renderAllUser(userArray){
             newTr.innerHTML += "<td>" + user[user_keys[j]] + "</td>";   
         }
 
+        newTr.innerHTML += "<td class='edit-td'><button class='edit-button' value='" + user.id + "'></button></td>"
         insertAfter(lastElement, newTr);
 
 
@@ -114,3 +151,126 @@ function renderAllUser(userArray){
 
 
 };
+
+
+//Edit User (refactoring)
+
+/*
+function getCurrentUser(userId){
+
+    request.open('GET', url);
+
+    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+
+    request.addEventListener("readystatechange", () =>{
+        if(request.readyState === 4 && request.status === 200){
+            userArray = JSON.parse(request.response);
+            renderAllUser(userArray);  
+        }
+});
+
+request.send();
+
+}
+*/
+
+const editUser = document.getElementById('editUser');
+
+class SendData{
+    id; 
+    name;
+    surname;
+    age;
+}
+
+function sendPatchRequest(event){
+
+    event.preventDefault();
+    /*
+    request.open('POST', url + '/create', true);
+
+    request.setRequestHeader("Content-type", "application/json");
+    request.onreadystatechange = function() {
+        if(request.readyState == XMLHttpRequest.DONE && (request.status == 200 || request.status == 201)) {
+            console.log('OK');
+        };
+    }
+    
+    request.send(JSON.stringify(requestBody));
+    */
+   console.log('patch');
+}
+
+editUser.onclick = function(event){
+    sendPatchRequest(event);
+}
+
+function showModalEditForm(userData){
+
+    showCover();
+    let modalFormContainer = document.getElementById('modal-editform-block')
+    let modalForm = document.getElementById('modal-edit-form')
+    let modalFormInputs = modalForm.getElementsByTagName('input')
+    let data = userData.getElementsByTagName('td');
+
+    const oldData = new SendData
+
+
+    for(let i = 0; i < data.length - 1; i++){
+        modalFormInputs[i].value = data[i].innerHTML;
+        oldData[modalFormInputs[i].name] = data[i].innerHTML;
+        console.log(modalFormInputs[i].name);
+    }
+
+    console.log(oldData);
+
+    function complete(value) {
+        hideCover();
+        modalFormContainer.style.display = 'none';
+        document.onkeydown = null;
+    }
+    
+    /*
+    form.onsubmit = function() {
+        complete(value);
+        return false;
+    };
+    */
+
+    modalForm.cancel.onclick = function() {
+        complete(null);
+    };
+    
+
+    document.onkeydown = function(e) {
+        if (e.key == 'Escape') {
+            complete(null);
+        }
+    };
+
+    modalFormContainer.style.display = 'block';
+    
+    // Hide cover
+    const overModalClick = document.getElementById('cover-div');
+
+    overModalClick.addEventListener('click', complete);
+    //
+
+}
+
+
+function editUsers(){
+    const editButtons = document.getElementsByClassName("edit-button");
+    for(let i = 0; i < editButtons.length; i++){
+        editButtons[i].addEventListener('click', function(){
+            userDataStream = editButtons[i].parentNode.parentNode;
+            showModalEditForm(userDataStream);
+        })
+    }
+}
+
+window.onload = function(){
+    editUsers();
+}
+
+

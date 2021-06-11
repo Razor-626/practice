@@ -27,6 +27,7 @@
                     <td>name</td>
                     <td>surname</td>
                     <td>age</td>
+                    <td class="edit-td"><button class="edit-button"></button></td>
                 </tr>
             </table>
         </div>
@@ -35,9 +36,9 @@
         <p class="title">All rights reserved</p>
     </footer>
 
-    <div id="modal-form-block">
+    <div id="modal-registrform-block">
         <h3>Регистрация</h3>
-        <form id="modal-form" action="" method="POST">
+        <form id="modal-registr-form" class="modal-form" action=""  method="POST">
             <label>ID</label>
             <input type="text" name="id">
             <label>Name</label>
@@ -46,7 +47,23 @@
             <input type="text" name="surname">
             <label>Age</label>
             <input type="text" name="age">
-            <button type="submit">Сохранить</button>
+            <button id="registrUser" type="submit" >Сохранить</button>
+            <button type="button" name="cancel">Отмена</button>
+        </form>
+    </div>
+    <div id="modal-editform-block" >
+        <h3>Редактирование</h3>
+        <form id="modal-edit-form" class="modal-form" action="" method="PATCH">
+            <label>ID</label>
+            <input type="text" name="id">
+            <label>Name</label>
+            <input type="text" name="name">
+            <label>Surname</label>
+            <input type="text" name="surname">
+            <label>Age</label>
+            <input type="text" name="age">
+            <button id="editUser" type="submit" >Сохранить</button>
+            <button type="button" name="cancel">Отмена</button>
         </form>
     </div>
     <script src="script.js"></script>
