@@ -11,7 +11,7 @@ request.setRequestHeader('Content-Type', 'application/x-www-form-url');
 request.addEventListener("readystatechange", () =>{
     if(request.readyState === 4 && request.status === 200){
         userArray = JSON.parse(request.response);
-        renderAllUser(userArray);  
+        renderAllUser(userArray.users);  
     }
 });
 
@@ -129,12 +129,19 @@ function insertAfter(lastElement, newTr) {
 };
 
 
-function renderAllUser(userArray){
+function sortedByField(field) {
+    return (a, b) => a[field] > b[field] ? 1 : -1;
+}
+  
 
-    for(let i = 0; i < userArray.users.length; i++){
+function renderAllUser(usersArray){
+
+    usersArray.sort(sortedByField('name'));
+
+    for(let i = 0; i < usersArray.length; i++){
         
         let lastElement = document.querySelector('.last_stream');        
-        user = userArray.users[i];
+        user = usersArray[i];
         user_keys = Object.keys(user);
         key_counter = user_keys.length;
         let newTr = document.createElement('tr');

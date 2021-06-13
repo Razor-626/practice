@@ -101,6 +101,7 @@ body main table td:first-child {
 }
 
 body footer {
+  margin-top: 35px;
   width: inherit;
   min-height: 30px;
   background-color: khaki;
