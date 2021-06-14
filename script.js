@@ -78,8 +78,8 @@ function sendPatchRequest(event){
 
     request.setRequestHeader("Content-type", "application/json");
     request.onreadystatechange = function() {
-        if(request.readyState == XMLHttpRequest.DONE && (request.status == 200 || request.status == 201)) {
-            console.log('OK');
+        if(request.readyState == XMLHttpRequest.DONE && (request.status == 200)) {
+            console.log(request.status);
         };
     }
     
