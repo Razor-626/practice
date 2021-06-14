@@ -3,6 +3,14 @@ const request = new XMLHttpRequest();
 const url = "http://localhost:3002";
 const modalRegisterForm = document.getElementById('modal-registr-form');
 
+class SendData{
+    id; 
+    name;
+    surname;
+    age;
+}
+
+
 //Get request
 request.open('GET', url);
 
@@ -55,9 +63,55 @@ registrUser.onclick = function(event){
 }
 
 
+//PATCH request
+
+function sendPatchRequest(event){
+
+    event.preventDefault();
+
+    const modalFormInputs = modalForm.getElementsByTagName('input')
+
+    for(let i = 0; i < modalFormInputs.length; i++){
+        newData[modalFormInputs[i].name] = modalFormInputs[i].value
+    };
+    
+    request.open('PATCH', url + '/update', true);
+
+    request.setRequestHeader("Content-type", "application/json");
+    request.onreadystatechange = function() {
+        if(request.readyState == XMLHttpRequest.DONE && (request.status == 200 || request.status == 201)) {
+            console.log('OK');
+        };
+    }
+    
+    requestBody = {oldData, newData};
+
+    request.send(JSON.stringify(requestBody));
+  
+}
 
 
-//Modal Form
+//Delete request
+
+function deleteUserRequest(user_id){
+    
+    
+    request.open('DELETE', url + '/delete?id=' + user_id);
+
+    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+
+    request.send(null);
+
+    request.addEventListener("readystatechange", () =>{
+        if(request.readyState === 4 && request.status == 200 ){
+            console.log('Delete');  
+        }
+    })
+    
+}
+
+
+//Register Modal Form
 const registerNav = document.getElementById('registration');
 
 function showCover() {
@@ -112,12 +166,13 @@ function showModalRegistrationForm(){
     const overModalClick = document.getElementById('cover-div');
 
     overModalClick.addEventListener('click', complete);
-//
+
 
 }
 
 registerNav.addEventListener('click', showModalRegistrationForm);
 
+///////////////////////////////////////////////////////////
 
 
 //Rendering JSON Data
@@ -159,77 +214,31 @@ function renderAllUser(usersArray){
 
 };
 
+///////////////////////////////////////////////////////////
 
-//Edit User (refactoring)
+//Edit and delete User Form
 
-/*
-function getCurrentUser(userId){
+const editUserBtn = document.getElementById('editUser');
+const deleteUserBtn = document.getElementById('deleteUser');
+const modalForm = document.getElementById('modal-edit-form');
+const oldData = new SendData    
+const newData = new SendData
 
-    request.open('GET', url);
 
-    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
-
-    request.addEventListener("readystatechange", () =>{
-        if(request.readyState === 4 && request.status === 200){
-            userArray = JSON.parse(request.response);
-            renderAllUser(userArray);  
-        }
-});
-
-request.send();
-
-}
-*/
-
-const editUser = document.getElementById('editUser');
-
-class SendData{
-    id; 
-    name;
-    surname;
-    age;
-}
-
-function sendPatchRequest(event){
-
-    event.preventDefault();
-    /*
-    request.open('POST', url + '/create', true);
-
-    request.setRequestHeader("Content-type", "application/json");
-    request.onreadystatechange = function() {
-        if(request.readyState == XMLHttpRequest.DONE && (request.status == 200 || request.status == 201)) {
-            console.log('OK');
-        };
-    }
-    
-    request.send(JSON.stringify(requestBody));
-    */
-   console.log('patch');
-}
-
-editUser.onclick = function(event){
-    sendPatchRequest(event);
-}
 
 function showModalEditForm(userData){
 
     showCover();
     let modalFormContainer = document.getElementById('modal-editform-block')
-    let modalForm = document.getElementById('modal-edit-form')
     let modalFormInputs = modalForm.getElementsByTagName('input')
     let data = userData.getElementsByTagName('td');
-
-    const oldData = new SendData
 
 
     for(let i = 0; i < data.length - 1; i++){
         modalFormInputs[i].value = data[i].innerHTML;
         oldData[modalFormInputs[i].name] = data[i].innerHTML;
-        console.log(modalFormInputs[i].name);
     }
 
-    console.log(oldData);
 
     function complete(value) {
         hideCover();
@@ -256,14 +265,25 @@ function showModalEditForm(userData){
     };
 
     modalFormContainer.style.display = 'block';
-    
+
+    //Edit User
+    editUserBtn.onclick = function(event){
+        sendPatchRequest(event);
+    }
+
+    //Delete User
+    deleteUserBtn.onclick = function(event){
+        event.preventDefault()
+        deleteUserRequest(oldData.id);
+    }
+
     // Hide cover
     const overModalClick = document.getElementById('cover-div');
 
     overModalClick.addEventListener('click', complete);
-    //
 
 }
+
 
 
 function editUsers(){
@@ -276,8 +296,7 @@ function editUsers(){
     }
 }
 
-window.onload = function(){
+
+window.onload = function(){ // Исправвить необх постоянной перезагрузки
     editUsers();
 }
-
-
