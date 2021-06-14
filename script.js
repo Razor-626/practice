@@ -26,7 +26,6 @@ request.addEventListener("readystatechange", () =>{
 request.send();
 
 
-
 //Post request
 
 const registrUser = document.getElementById('registrUser');
