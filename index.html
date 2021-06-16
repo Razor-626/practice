@@ -36,35 +36,43 @@
     </footer>
 
     <div id="modal-registrform-block">
-        <h3>Регистрация</h3>
-        <form id="modal-registr-form" class="modal-form" action=""  method="POST">
-            <label>ID</label>
-            <input type="text" name="id">
-            <label>Name</label>
-            <input type="text" name="name">
-            <label>Surname</label>
-            <input type="text" name="surname">
-            <label>Age</label>
-            <input type="text" name="age">
-            <button id="registrUser" type="submit" >Сохранить</button>
-            <button type="button" name="cancel">Отмена</button>
-        </form>
+        <div class="modal-registrform-content">
+            <div class="title">
+                <h3>Регистрация</h3>
+            </div>
+            <form id="modal-registr-form" class="modal-form" action=""  method="POST">
+                <label>ID</label>
+                <input type="number" name="id">
+                <label>Name</label>
+                <input type="text" name="name">
+                <label>Surname</label>
+                <input type="text" name="surname">
+                <label>Age</label>
+                <input type="number" name="age">
+                <button id="registrUser" type="submit" >Сохранить</button>
+                <button id="cancel" type="button" name="cancel">Отмена</button>
+            </form>
+        </div>
     </div>
     <div id="modal-editform-block" >
-        <h3>Редактирование</h3>
-        <form id="modal-edit-form" class="modal-form" action="" method="PATCH">
-            <label>ID</label>
-            <input type="text" name="id">
-            <label>Name</label>
-            <input type="text" name="name">
-            <label>Surname</label>
-            <input type="text" name="surname">
-            <label>Age</label>
-            <input type="text" name="age">
-            <button id="editUser" type="submit" >Сохранить</button>
-            <button id="deleteUser" type="submit" >Удалить</button>
-            <button type="button" name="cancel">Отмена</button>
-        </form>
+        <div class="modal-editform-content"">
+            <div class="title">
+                <h3>Редактирование</h3>
+            </div>
+            <form id="modal-edit-form" class="modal-form" action="" method="PATCH">
+                <label>ID</label>
+                <input type="number" name="id">
+                <label>Name</label>
+                <input type="text" name="name">
+                <label>Surname</label>
+                <input type="text" name="surname">
+                <label>Age</label>
+                <input type="number" name="age">
+                <button id="editUser" type="submit" >Сохранить</button>
+                <button id="deleteUser" type="submit" >Удалить</button>
+                <button id="cancel" type="button" name="cancel">Отмена</button>
+            </form>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

@@ -78,14 +78,13 @@ body
                 min-width: 65px
 
 
-                //&:last-child
-                ///    display: none                         
+
 
                 button
                     
                     width: 22px
                     height: 22px
-                    background: url(/img/edit.png) no-repeat 
+                    background: url(/img/edit.png) no-repeat
                     background-size: 100%
                     border: none
 
@@ -98,8 +97,6 @@ body
                     padding: 10px 20px
                     min-width: 20px
 
-
-                    
 
     footer
         margin-top: 35px
@@ -116,48 +113,60 @@ body
     #modal-editform-block, #modal-registrform-block
 
         position: absolute
-        left: calc(50% - 125px)
-        top: calc(50% - 150px)
+        left: calc(50% - 150px)
+        top: calc(50% - 210px)
         z-index: 9999
         display: none
-        width: 250px
-        height: 300px
+        width: 300px
+        height: 420px
         background: $background_color
         text-align: center
         border-radius: 25px        
         font-family: $main-font-family
     
-        h3
-            font-size: 22px
+        .modal-registrform-content, .modal-editform-content
 
-        .modal-form
-            margin-top: 5px
+            height: 420px
+            width: 300px
             display: flex
             flex-direction: column
-            width: 250px
-            height: 220px
-            justify-content: space-around
             align-items: center
-            font-size: 18px
+            justify-content: center
 
-            input
-                border-radius: 5px
-                border: none
-                outline: none
-                padding-left: 10px
-            
-            button
-                margin-top: 15px
-                width: 100px
-                border: none
-                border-radius: 5px
-                font-family: $main-font-family
+            .title
+                
+                h3
+                    font-size: 22px
+                    margin-bottom: 10px 
+
+            .modal-form
+                margin-top: 10px
+                display: flex
+                flex-direction: column
+                min-width: 250px
+                min-height: 220px
+                justify-content: space-around
+                align-items: center
                 font-size: 18px
 
+                input
+                    border-radius: 5px
+                    border: none
+                    outline: none
+                    padding-left: 10px
+                
+                button
+                    margin-top: 15px
+                    width: 100px
+                    border: none
+                    border-radius: 5px
+                    font-family: $main-font-family
+                    font-size: 18px
 
-                &:hover
-                    cursor: pointer
-                    transform: scale(1.1)
+
+                    &:hover
+                        cursor: pointer
+                        transform: scale(1.1)
 
     #cover-div
         position: fixed
